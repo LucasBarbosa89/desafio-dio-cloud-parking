@@ -46,6 +46,10 @@ public class SwaggerConfig {
                     .title("Parking REST API")
                     .description("Spring Boot REST API for parking")
                     .version("1.0.0")
+                    .contact(new Contact(
+                            "Lucas Barbosa",
+                            "github.com/LucasBarbosa89",
+                            "lucasbarbosabrandao@gmail.com"))
                     .license("Apache license Version 2.0")
                     .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
                     .build();

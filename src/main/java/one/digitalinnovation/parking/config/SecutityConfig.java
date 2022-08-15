@@ -19,7 +19,7 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("user")
-                .password(passwordEncoder().encode("senha123"))
+                .password(passwordEncoder().encode("123"))
                 .roles("USER")
                 .and()
                 .passwordEncoder(passwordEncoder());
