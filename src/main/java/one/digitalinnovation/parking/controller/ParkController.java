@@ -45,10 +45,33 @@ public class ParkController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation("Find one specific parking vehicle")
+    @ApiOperation("Find one specific parking vehicle id")
     public  ResponseEntity<ParkingDTO> findById(@PathVariable String id){
-        Parking parking = parkingService.findById(id).get();
+        Parking parking = parkingService.findById(id);
         ParkingDTO result = mapper.parkingDTO(parking);
         return ResponseEntity.ok(result);
+    }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation("Exclude one specific parking vehicle by id")
+    public ResponseEntity delete(@PathVariable String id){
+        parkingService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    @ApiOperation("Udpate one specific parking vehicle by id")
+    public  ResponseEntity<ParkingDTO> update(@PathVariable String id, @RequestBody CreateDTO dto){
+        Parking parkingCreate = mapper.toParkingCreate(dto);
+        Parking parking = parkingService.update(id,parkingCreate);
+        ParkingDTO result = mapper.parkingDTO(parking);
+
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<ParkingDTO> exitVehicle(@PathVariable String id){
+        Parking parking = parkingService.exit(id);
+        return ResponseEntity.ok(mapper.parkingDTO(parking));
     }
 }
